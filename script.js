@@ -1,4 +1,4 @@
-const sheetWebAppURL = 'https://script.google.com/macros/s/AKfycby_mEtzoK3razMaaWJWNQ64E5M0M6bHiCsIpHHyJENUsnXJXSPtYDEchcbVknkg0xk/exec';  // Replace with your deployed URL
+const sheetWebAppURL = 'https://script.google.com/macros/s/AKfycbyGs-nM9C2ferlXsRDFObmhLafIAsdR6ufCRRJw3ZZ7tvMDaOGineqvdufAq3y-8sE/exec';  // Replace with your deployed URL
 
 // Function to log interaction
 function logInteraction(eventType, details) {
