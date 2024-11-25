@@ -1,0 +1,343 @@
+/* Resetting default styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Background - more realistic night sky */
+.sky {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000, #01091c); /* Darker blues for a deeper night effect */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add starfield effect with multiple layers of stars */
+.starfield {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Moon settings */
+.moon {
+  position: absolute;
+  top: 10%;
+  left: 80%;
+  width: 100px; /* Larger moon */
+  height: 100px;
+  background: radial-gradient(circle, #fff, #e6e6e6);  /* Brighter, more intense gradient */
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.8), 0 0 100px rgba(255, 255, 255, 0.6);  /* Enhanced shadow for stronger glow */
+  z-index: 0;
+}
+
+/* Stars in the background */
+.star {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  padding: 3px;
+  background-color: #fff;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8); /* Brighter glow */
+  cursor: pointer;
+  animation: twinkle 2s infinite ease-in-out, pulse 3s infinite ease-in-out;
+  z-index: 1;
+}
+
+
+/* Creating layers of stars with different animation speeds for depth */
+.star-layer-1 {
+  animation: twinkle 1.5s infinite ease-in-out;
+}
+.star-layer-2 {
+  animation: twinkle 2s infinite ease-in-out;
+}
+.star-layer-3 {
+  animation: twinkle 2.5s infinite ease-in-out;
+}
+
+/* Keyframes for twinkle effect */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  transform: rotate(-45deg);
+}.shootingstar {
+  will-change: transform; /* Hint the browser to optimize the animation */
+  --star-color: #fff; 
+  --star-tail-length: 6em;
+  --star-tail-height: 2px;
+  --star-width: calc(var(--star-tail-length) / 6);
+  --fall-duration: 9s;
+  --tail-fade-duration: var(--fall-duration);
+  position: absolute;
+  top: var(--top-offset);
+  left: 0;
+  width: var(--star-tail-length);
+  height: var(--star-tail-height);
+  color: var(--star-color);
+  background: linear-gradient(45deg, currentColor, transparent);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px currentColor);
+  transform: translate3d(104em, 0, 0);
+  animation: fall var(--fall-duration) var(--fall-delay) linear 2, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out 2;
+}
+
+@media screen and (max-width: 750px) {
+  .shootingstar {
+    animation: fall var(--fall-duration) var(--fall-delay) linear 2;
+  }
+}.shootingstar:nth-child(1) {
+  --star-tail-length: 5.86em;
+  --top-offset: 19.92vh;
+  --fall-duration: 8.145s;
+  --fall-delay: 7.572s;
+  animation-delay: 7s;
+}
+.shootingstar::before, .shootingstar::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: calc(var(--star-width) / -2);
+  width: var(--star-width);
+  height: 100%;
+  background: linear-gradient(45deg, transparent, currentColor, transparent);
+  border-radius: inherit;
+  animation: blink 1s linear 2;
+}
+.shootingstar::before {
+  transform: rotate(45deg);
+}
+.shootingstar::after {
+  transform: rotate(-45deg);
+}
+
+@keyframes fall {
+  to {
+    transform: translate3d(-30em, 0, 0);
+  }
+
+}
+
+
+@keyframes tail-fade {
+  0%, 50% {
+    width: var(--star-tail-length);
+    opacity: 1;
+  }
+  70%, 80% {
+    width: 0;
+    opacity: 0.4;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+
+
+/* Message box styling */
+/* Message box styling */
+.message-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #05112c;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+.star {
+  width: 8px;
+  height: 8px;
+}
+  .message-box {
+      width: 90%;
+      padding: 15px;
+  }
+
+  .moon {
+      width: 60px;
+      height: 60px;
+  }
+  
+}
+
+@media (max-width: 480px) {
+.star {
+  width: 6px;
+  height: 6px;
+}
+
+  .message-box {
+      width: 95%;
+      padding: 10px;
+  }
+
+  .close-btn {
+      font-size: 20px;
+  }
+
+  .moon {
+      width: 50px;
+      height: 50px;
+  }
+
+  
+}
+
+
+/* Question Page Styles */
+.question-page {
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000, #01091c);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.question-page h1 {
+  margin-bottom: 20px;
+}
+
+.question-page input {
+  padding: 10px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 15px;
+}
+
+.question-page button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* Fade-in animation for main content */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.98);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Apply the animation to the main content */
+.moon {
+  animation: fadeIn 3.5s ease-out;  /* Adjust duration and easing as needed */
+}
+/* Secret message styling */
+.secret-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #05112c;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  z-index: 10;
+}
+
+
+/* .star { */
+  /* animation: fadeIn 5.5s ease-out;  Adjust duration and easing as needed */
+
+/* Hint message styling */
+.click-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 30px;
+  border-radius: 10px;
+  animation: fadeInOut 3s infinite ease-in-out;
+  white-space: nowrap;
+  text-align: center;
+  max-width: 90%; /* Prevents overflow on small screens */
+  z-index: 2;
+}
+
+/* Fade-in and fade-out animation */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .click-hint {
+    font-size: 18px; /* Smaller font for tablets */
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .click-hint {
+    font-size: 16px; /* Smaller font for mobile devices */
+    padding: 8px 15px;
+  }
+}
+
+
+
+
+
+
