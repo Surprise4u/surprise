@@ -22,7 +22,7 @@
 // countdowntimer
 
 const countdown = () => {
-  const targetDate = new Date("2025-01-06T00:00:00").getTime(); // Set your date here
+  const targetDate = new Date("2024-11-13T00:00:00").getTime(); // Set your date here
   const timer = document.getElementById("timer");
  
   const questionPage = document.getElementById("questionPage");
