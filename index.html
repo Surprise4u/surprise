@@ -8,13 +8,35 @@
 </head>
 <body>
 
+    <!-- Countdown timer -->
+     <div class = "Countdowntimer-page" id = "Countdowntimer">
+        <h1>Countdown Starts for Celebration</h1>
+       <div class="time" id="timer"></div>
+      
+       
+     </div>
+
+
     <!-- Question Page -->
-    <div class="question-page" id="questionPage">
-        <h1>Enter the Secret Answer:</h1>
+    <div class="question-page" id="questionPage" style="display: none;">
+        <div id="countDown" style="display:none;">
+            <img id="countdownGif" src="" alt="Success" style="width: 200px; height: auto;">
+        </div>
+        <h1>If you remember, enter the date of our first conversation.</h1>
         <input type="date" id="answerInput" placeholder="Your answer here">
         <button onclick="checkAnswer()">Submit</button>
-        <p id="errorMessage" style="color:red; display:none;">Wrong answer. Try again!</p>
+        
+        <div id="errorMessage" style="display:none;">
+            <img id="errorGif" src="" alt="Success" style="width: 200px; height: auto;">
+        </div>
+
+        <!-- <p id="errorMessage" style="color:red; display:none;"></p> -->
+        <!-- <p id="successmsg" style="color:green; display:none;"></p> -->
+        <div id="successmsg" style="display:none;">
+            <img id="successGif" src="" alt="Success" style="width: 200px; height: auto;">
+        </div>
     </div>
+
     <!-- Main container for the stars -->
     <div class="sky" id="mainContent" style="display:none;">
         <!-- Starfield effect container for more stars -->
@@ -33,6 +55,26 @@
         <div class="star" onclick="showMessage(2)"></div>
         <div class="star" onclick="showMessage(3)"></div>
         <div class="star" onclick="showMessage(4)"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
+        <div class="starss"></div>
 
 
         <div class="stars">
@@ -46,16 +88,46 @@
             <p id="messageText"></p>
         </div>
         <div class="moon" onclick="showSecretMessage()"></div>
-        <div class="click-hint" id="clickHint">Click the stars to discover the messages!</div>
+        <div class="click-hint" id="clickHint">Click the Golden stars to discover the messages!</div>
+        <!-- Message Icon -->
+    <button class="message-icon" id='hidden' style="display: none;" onclick="toggleForm()">💬</button>
 
+    <!-- Contact Us Form -->
+    <div class="message-form" id="messageForm">
+        <h3>Share you Experience about the Surprise</h3>
+        <form action="https://formspree.io/f/xgvenrbq" method="POST">
+            <label>
+                Do you like it?
+                <textarea name="message" required></textarea>
+            </label><br><br>
+
+            <!-- Button Container for Send and Cancel Buttons -->
+            <div class="button-container">
+                <!-- Send Button -->
+                <button type="submit">Send</button>
+                <!-- Cancel Button -->
+                <button type="button" class="cancel-btn" onclick="toggleForm()">Cancel</button>
+            </div>
+        </form>
     </div>
-    
-    
+        
+        
+    </div>    
 
-    
+   
+
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+    <script>
+        // Toggle the visibility of the message form
+        function toggleForm() {
+            const form = document.getElementById('messageForm');
+            form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+
 
 </body>
 </html>
