@@ -106,12 +106,17 @@ function randomizeStarPositions() {
   });
 }
 
+
 const starClickSound = new Audio('twinkle.mp3');  // Adjust the path as needed
 function playStarSound() {
   starClickSound.currentTime = 0;  // Reset the sound to the beginning
   starClickSound.play();
 }
-
+const birthdaysong = new Audio('birthday.mp3');  // Adjust the path as needed
+function playbirthdaysong() {
+  birthdaysong.currentTime = 0;  // Reset the sound to the beginning
+  birthdaysong.play();
+}
 const moonClickSound = new Audio('Confetti.mp3');  // Adjust the path as needed
 function playConfettiSound() {
   moonClickSound.currentTime = 0;  // Reset the sound to the beginning
@@ -185,7 +190,7 @@ function closeMessage() {
 let attemptCount = 0; // Track the number of attempts
 
 function checkAnswer() {
-    const correctAnswer = "2024-11-01"; // Replace with your desired correct answer
+    const correctAnswer = "2022-03-23"; // Replace with your desired correct answer
     const userAnswer = document.getElementById('answerInput').value.trim();
     const errorMessage = document.getElementById('errorMessage');
     const errorGif = document.getElementById('errorGif');
@@ -203,7 +208,7 @@ function checkAnswer() {
       successGif.src = 'clapping.gif';
       errorMessage.style.display='none';
       countDownGif.src = 'countdown.gif'  // Replace with your GIF file path or URL
-
+      playbirthdaysong();
         // Correct answer logic
         setTimeout(() => {
           document.getElementById('questionPage').style.display = 'none';
@@ -215,13 +220,16 @@ function checkAnswer() {
         if (attemptCount === 1) {
             errorMessage.style.display='block';
             errorGif.src = 'incorrect.gif';
+            
+
         } else if (attemptCount === 2) {
             errorGif.src = 'last.gif';
         } else {
             // Forcibly correct the input on the third attempt
             errorGif.src = 'rehnedo.gif';
             countDown.style.display='block';
-            countDownGif.src = 'countdown.gif' 
+            countDownGif.src = 'countdown.gif'
+            playbirthdaysong(); 
             // document.getElementById('answerInput').value = correctAnswer;
             
             // Proceed as if the correct answer was entered
