@@ -22,7 +22,7 @@
 // countdowntimer
 
 const countdown = () => {
-  const targetDate = new Date("2025-01-06T00:00:00").getTime(); // Set your date here
+  const targetDate = new Date("2026-01-06T00:00:00").getTime(); // Set your date here
   const timer = document.getElementById("timer");
  
   const questionPage = document.getElementById("questionPage");
@@ -38,7 +38,7 @@ const countdown = () => {
           const seconds = Math.floor((difference % (1000 * 60)) / 1000);
           const milliseconds = difference % 1000;
 
-          timer.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+          timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
           
       } else {
           timer.innerHTML = "The site is now live!";
