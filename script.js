@@ -38,7 +38,7 @@ const countdown = () => {
           const seconds = Math.floor((difference % (1000 * 60)) / 1000);
           const milliseconds = difference % 1000;
 
-          timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          timer.innerHTML = `${days} days ${hours} hrs ${minutes} mins ${seconds}`;
           
       } else {
           timer.innerHTML = "The site is now live!";
